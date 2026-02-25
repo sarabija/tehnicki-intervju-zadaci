@@ -71,3 +71,116 @@ Zatim pokrenuti skriptu:
 cd zad3
 python rjesenje.py
 ```
+
+---
+
+## Zadatak 4: Calorie Tracker - Full Stack REST Aplikacija
+
+Kompletan sistem za praćenje kalorija s RBAC-om, izgrađen korištenjem FastAPI (Python) na backendu i Vanilla JavaScript-a na frontend-u. Projekt demonstrira moderno razdvajanje slojeva aplikacije i sigurnosne standarde.
+
+### Arhitektura sistema
+
+Projekt je dizajniran prema principu razdvajanja odgovornosti (Separation of Concerns):
+
+* **Backend:** FastAPI služi isključivo kao REST API. Koristi SQLAlchemy ORM za komunikaciju sa SQLite bazom podataka.
+* **Frontend:** SPA (Single Page Application) princip koristeći čisti JavaScript, HTML5 i CSS3. Komunikacija se odvija putem JSON-a.
+* **Autentifikacija:** Implementirana putem JWT (JSON Web Token) standarda sa `HS256` algoritmom.
+
+### Instalacija i pokretanje
+
+#### 1. Kloniranje i virtualno okruženje
+
+Prvi korak je izolacija projekta kako bi se izbjegli sukobi s globalnim Python paketima:
+```bash
+# Kloniranje repozitorija
+git clone 
+cd zad4
+
+# Kreiranje virtualnog okruženja (venv)
+python -m venv venv
+
+# Aktivacija (Windows)
+venv\Scripts\activate
+
+# Aktivacija (Mac/Linux)
+source venv/bin/activate
+```
+
+#### 2. Instalacija zavisnosti
+```bash
+pip install fastapi uvicorn sqlalchemy passlib[bcrypt] python-jose[cryptography] python-multipart requests
+```
+
+#### 3. Pokretanje Backenda
+```bash
+cd backend
+uvicorn main:app --reload
+```
+
+Aplikacija će pri startup-u provjeriti bazu i, ako je prazna, automatski kreirati tablice i početne korisnike.
+
+#### 4. Pokretanje Frontenda
+
+* Otvorite `frontend/index.html` u pretraživaču.
+
+### "Seed" podaci
+
+Prilikom prvog pokretanja (brisanje `.db` datoteke simulira ovaj proces), sistem generiše sljedeće testne naloge:
+
+| Username | Password | Role | Opis pristupa |
+|----------|----------|------|---------------|
+| `admin` | `admin123` | `admin` | Potpuni pristup svim obrocima i svim korisnicima. |
+| `manager` | `manager123` | `manager` | Upravlja računima, ali nema pristup podacima o prehrani. |
+| `user` | `user123` | `user` | Osobni unos obroka i praćenje limita (default: 1000 kcal). |
+
+### REST API i Funkcionalni testovi
+
+Ovaj projekt naglašava važnost API sloja. Cijelim sistemom se može upravljati bez frontenda.
+
+#### Pokretanje automatskog testa
+
+U backend folderu projekta nalazi se `test_api.py`. Dok backend radi, pokrenite:
+```bash
+python test_api.py
+```
+
+**Što test provjerava?**
+
+1. Uspješan Login i dobivanje Bearer tokena.
+2. Dohvatanje liste obroka.
+3. Kreiranje novog obroka putem POST zahtjeva.
+4. Brisanje resursa putem DELETE zahtjeva.
+
+<img width="390" height="157" alt="image" src="https://github.com/user-attachments/assets/7db7f13d-bdae-4be1-ae2c-825328fe9cc7" />
+
+Prikaz nemogućnosti direktnog pristupa rutama.
+
+
+#### Interaktivna dokumentacija
+
+FastAPI automatski generiše Swagger dokumentaciju na:
+
+ `http://127.0.0.1:8000/docs`
+
+### Tehnički detalji klasa i modula
+
+#### Backend (Python)
+
+* **`models.py`:** Definiše `User` (id, username, password_hash, role) i `Meal` (text, calories, date, time) klase.
+* **`auth.py`:** Sadrži logiku za hashing lozinki (`bcrypt`) i validaciju JWT tokena.
+* **`main.py`:** Sadrži rute i `startup` event za inicijalizaciju baze podataka.
+
+#### Frontend (JavaScript)
+
+* **`app.js`:** Upravlja stanjem aplikacije. 
+
+### Dodatne funkcionalnosti
+
+* **Filtriranje obroka:** Po rasponu datuma (`date_from`, `date_to`) i vremena (`time_from`, `time_to`)
+* **Dnevni limit kalorija:** Korisnici mogu postaviti očekivani broj kalorija po danu
+* **Vizualna indikacija:** Dani se prikazuju zeleno ako je ukupan unos ispod limita, inače crveno
+* **Automatska inicijalizacija:** Pri prvom pokretanju, baza se automatski puni testnim podacima
+
+---
+
+
