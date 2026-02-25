@@ -17,3 +17,18 @@ Da bi skripta ispravno pronašla fajl, pokrenuti je iz njenog direktorijuma:
 ```bash
 cd zad1
 python rjesenje.py
+
+## Zadatak 2: Brojanje HTML tagova (Web Scraping)
+Skripta dohvaća sadržaj specifične stranice na Stack Overflow-u i ispisuje ukupan broj pojavljivanja `<script>` i `<meta>` tagova.
+
+### Implementacija i performanse
+* **Algoritam:** Koristi se `BeautifulSoup` s `html.parser` stablom za pretraživanje elemenata u jednom prolazu ($O(n)$ kompleksnost).
+* **Efikasnost:** Namjenski HTML parser osigurava preciznost pri obradi DOM strukture, što je znatno pouzdanije i brže od korištenja regularnih izraza.
+* **Napomena:** Kako bi se spriječilo blokiranje od strane servera (HTTP 403 Forbidden), skripta koristi `User-Agent` zaglavlje. Također je postavljen `timeout` parametar kako bi se osigurala stabilnost u slučaju mrežnog zastoja.
+
+
+
+### Kako pokrenuti
+Prije pokretanja potrebno je instalirati zavisne biblioteke:
+```bash
+pip install requests beautifulsoup4
