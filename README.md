@@ -74,11 +74,11 @@ python rjesenje.py
 
 ---
 
-## Zadatak 4: 🥗 Calorie Tracker - Full Stack REST Aplikacija
+## Zadatak 4: Calorie Tracker - Full Stack REST Aplikacija
 
 Kompletan sistem za praćenje kalorija s RBAC-om, izgrađen korištenjem FastAPI (Python) na backendu i Vanilla JavaScript-a na frontend-u. Projekt demonstrira moderno razdvajanje slojeva aplikacije i sigurnosne standarde.
 
-### 🏗️ Arhitektura sistema
+### Arhitektura sistema
 
 Projekt je dizajniran prema principu razdvajanja odgovornosti (Separation of Concerns):
 
@@ -86,7 +86,7 @@ Projekt je dizajniran prema principu razdvajanja odgovornosti (Separation of Con
 * **Frontend:** SPA (Single Page Application) princip koristeći čisti JavaScript, HTML5 i CSS3. Komunikacija se odvija putem JSON-a.
 * **Autentifikacija:** Implementirana putem JWT (JSON Web Token) standarda sa `HS256` algoritmom.
 
-### 🛠️ Instalacija i pokretanje
+### Instalacija i pokretanje
 
 #### 1. Kloniranje i virtualno okruženje
 
@@ -123,7 +123,7 @@ Aplikacija će pri startup-u provjeriti bazu i, ako je prazna, automatski kreira
 
 * Otvorite `frontend/index.html` u pretraživaču.
 
-### 🔐 "Seed" podaci
+### "Seed" podaci
 
 Prilikom prvog pokretanja (brisanje `.db` datoteke simulira ovaj proces), sistem generiše sljedeće testne naloge:
 
@@ -133,7 +133,7 @@ Prilikom prvog pokretanja (brisanje `.db` datoteke simulira ovaj proces), sistem
 | `manager` | `manager123` | `manager` | Upravlja računima, ali nema pristup podacima o prehrani. |
 | `user` | `user123` | `user` | Osobni unos obroka i praćenje limita (default: 1000 kcal). |
 
-### 🧪 REST API i Funkcionalni testovi
+### REST API i Funkcionalni testovi
 
 Ovaj projekt naglašava važnost API sloja. Cijelim sistemom se može upravljati bez frontenda.
 
@@ -151,13 +151,18 @@ python test_api.py
 3. Kreiranje novog obroka putem POST zahtjeva.
 4. Brisanje resursa putem DELETE zahtjeva.
 
+<img width="390" height="157" alt="image" src="https://github.com/user-attachments/assets/7db7f13d-bdae-4be1-ae2c-825328fe9cc7" />
+
+Prikaz nemogućnosti direktnog pristupa rutama.
+
+
 #### Interaktivna dokumentacija
 
 FastAPI automatski generiše Swagger dokumentaciju na:
 
-👉 `http://127.0.0.1:8000/docs`
+ `http://127.0.0.1:8000/docs`
 
-### 📝 Tehnički detalji klasa i modula
+### Tehnički detalji klasa i modula
 
 #### Backend (Python)
 
@@ -167,10 +172,9 @@ FastAPI automatski generiše Swagger dokumentaciju na:
 
 #### Frontend (JavaScript)
 
-* **`app.js`:** Upravlja stanjem aplikacije. Sadrži globalni `userNamesMap` za pretvorbu ID-ova u imena (korisno za Admina) i logiku za dinamičko prikazivanje elemenata sučelja ovisno o ulogama.
-* **`fetchWithAuth`:** Wrapper funkcija koja automatski dodaje Authorization zaglavlje svakom zahtjevu.
+* **`app.js`:** Upravlja stanjem aplikacije. 
 
-### 📊 Dodatne funkcionalnosti
+### Dodatne funkcionalnosti
 
 * **Filtriranje obroka:** Po rasponu datuma (`date_from`, `date_to`) i vremena (`time_from`, `time_to`)
 * **Dnevni limit kalorija:** Korisnici mogu postaviti očekivani broj kalorija po danu
