@@ -36,6 +36,7 @@ Skripta dohvaća sadržaj specifične stranice na Stack Overflow-u i ispisuje uk
 
 ### Kako pokrenuti
 
+Koristiti Python 11.
 Prije pokretanja potrebno je instalirati zavisne biblioteke:
 ```bash
 pip install requests beautifulsoup4
