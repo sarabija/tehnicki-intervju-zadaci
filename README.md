@@ -147,13 +147,13 @@ python test_api.py
 **Što test provjerava?**
 
 1. Uspješan Login i dobivanje Bearer tokena.
-2. Dohvat liste obroka.
+2. Dohvatanje liste obroka.
 3. Kreiranje novog obroka putem POST zahtjeva.
 4. Brisanje resursa putem DELETE zahtjeva.
 
 #### Interaktivna dokumentacija
 
-FastAPI automatski generira Swagger dokumentaciju na:
+FastAPI automatski generiše Swagger dokumentaciju na:
 
 👉 `http://127.0.0.1:8000/docs`
 
@@ -169,29 +169,6 @@ FastAPI automatski generira Swagger dokumentaciju na:
 
 * **`app.js`:** Upravlja stanjem aplikacije. Sadrži globalni `userNamesMap` za pretvorbu ID-ova u imena (korisno za Admina) i logiku za dinamičko prikazivanje elemenata sučelja ovisno o ulogama.
 * **`fetchWithAuth`:** Wrapper funkcija koja automatski dodaje Authorization zaglavlje svakom zahtjevu.
-
-### 🔒 Sigurnosne napomene
-
-* **Zaštita od samobrisanja:** Korisnik/Admin ne može obrisati sam sebe.
-* **Ograničene ovlasti Managera:** Ne može brisati ili uređivati Admin račune.
-* **Hashing lozinki:** Sve lozinke su hashirane pomoću `bcrypt` algoritma – čisti tekst se nikada ne sprema u bazu.
-* **JWT autentifikacija:** Svi zaštićeni endpointi zahtijevaju validan Bearer token.
-
-### 🎯 Funkcionalnosti po ulogama
-
-#### Regular User
-* CRUD operacije **samo na vlastitim obrocima**
-* Pregled dnevnog limita kalorija (zeleno/crveno označavanje)
-* Filtriranje obroka po datumu i vremenu
-
-#### User Manager
-* CRUD operacije **na svim korisnicima** (osim Admin-a)
-* **Nema pristup** podacima o obrocima
-
-#### Admin
-* **Potpuni pristup** svim obrocima svih korisnika
-* **Potpuni pristup** svim korisničkim računima
-* CRUD operacije na svim resursima u sustavu
 
 ### 📊 Dodatne funkcionalnosti
 
