@@ -32,11 +32,10 @@ Skripta dohvaća sadržaj specifične stranice na Stack Overflow-u i ispisuje uk
 
 * **Algoritam:** Koristi se `BeautifulSoup` s `html.parser` stablom za pretraživanje elemenata u jednom prolazu ($O(n)$ kompleksnost).
 * **Efikasnost:** Namjenski HTML parser osigurava preciznost pri obradi DOM strukture, što je znatno pouzdanije i brže od korištenja regularnih izraza.
-* **Napomena:** Kako bi se spriječilo blokiranje od strane servera (HTTP 403 Forbidden), moguće je dodati `User-Agent` zaglavlje. 
+* **Napomena:** Kako bi se spriječilo blokiranje od strane servera (HTTP 403 Forbidden), može se koristi `User-Agent` zaglavlje. 
 
 ### Kako pokrenuti
 
-Koristiti Python 11.
 Prije pokretanja potrebno je instalirati zavisne biblioteke:
 ```bash
 pip install requests beautifulsoup4
@@ -45,5 +44,30 @@ pip install requests beautifulsoup4
 Zatim pokrenuti skriptu:
 ```bash
 cd zad2
+python rjesenje.py
+```
+
+---
+
+## Zadatak 3: Provjera prihvaćenog odgovora na Stack Overflow-u
+
+Skripta provjerava da li određena Stack Overflow stranica ima prihvaćen odgovor i, ako ga ima, ispisuje broj glasova koje taj odgovor ima.
+
+### Implementacija i performanse
+
+* **Algoritam:** Koristi `BeautifulSoup` za parsiranje HTML-a i pronalaženje elementa s klasom `js-accepted-answer`. I ova klasa i `data-score` atribut su pronadjeni ručno.
+* **Preciznost:** Broj glasova se direktno čita iz `data-score` atributa prihvaćenog odgovora, što osigurava tačnost podataka.
+* **Napomena:** Kako bi se spriječilo blokiranje od strane servera (HTTP 403 Forbidden), može se koristi `User-Agent` zaglavlje. 
+
+### Kako pokrenuti
+
+Prije pokretanja potrebno je instalirati zavisne biblioteke:
+```bash
+pip install requests beautifulsoup4
+```
+
+Zatim pokrenuti skriptu:
+```bash
+cd zad3
 python rjesenje.py
 ```
